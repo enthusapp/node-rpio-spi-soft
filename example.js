@@ -1,10 +1,10 @@
 var spi_soft = require('./lib/spi_soft');
 
 spi_soft.begin({
-    select: 32,
-    clock: 33,
-    miso: 38,
-    mosi: 40}
+    select: 13,
+    clock: 15,
+    miso: 16,
+    mosi: 18}
     );
 
 var tx = new Buffer([0x3, 0x0, 0x0, 0x0]);
