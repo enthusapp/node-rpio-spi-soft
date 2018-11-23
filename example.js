@@ -7,14 +7,21 @@ spi_soft.begin({
     mosi: 18}
     );
 
-var tx = new Buffer([0x3, 0x0, 0x0, 0x0]);
-var rx = new Buffer(4);
-var out;
+var tx = new Buffer([0xc0, 0xa7, 0xff, 0xaa, 0x5a, 0xac, 0x43, 0x77, 0x88, 0x99]);
+var rx1 = new Buffer(16);
+var rx2 = new Buffer(16);
 var i, j = 0;
 
-for (i = 0; i < 128; i++, ++j) {
+/*
+for (i = 0; i < 2; i++, ++j) {
 	tx[1] = i;
-	spi_soft.transfer(tx, rx, 4);
-	out = ((rx[2] << 1) | (rx[3] >> 7));
-	process.stdout.write(out.toString(16) + ((j % 16 == 0) ? '\n' : ' '));
+    spi_soft.transfer(tx, rx, 2);
+
+    console.log(rx);
 }
+*/
+//spi_soft.transfer(tx, rx1, 8);
+tx[0] = 0x40;
+spi_soft.transfer(tx, rx2, 12);
+console.log(rx1);
+console.log(rx2);
